@@ -1,20 +1,13 @@
-const express = require('express');
+const { createServer } = require('http');
 const next = require('next');
-require('dotenv').config(); // Load environment variables
 
-const port = process.env.PORT || 3002; // Use PORT from env or default to 3002
-const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev });
+const app = next({ dev: false });
 const handle = app.getRequestHandler();
 
-const server = express();
-
-server.all('*', (req, res) => {
-  return handle(req, res);
-});
-
 app.prepare().then(() => {
-  server.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  createServer((req, res) => {
+    handle(req, res);
+  }).listen(3002, () => {
+    console.log('Server running on port 3002');
   });
 });
