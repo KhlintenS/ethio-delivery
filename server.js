@@ -7,7 +7,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   createServer((req, res) => {
     handle(req, res);
-  }).listen(3002, () => {
+  }).listen(3000, () => {
     console.log('Server running on port 3002');
   });
 });
