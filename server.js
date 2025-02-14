@@ -1,4 +1,4 @@
-const express = require("express");
+
 const next = require("next");
 
 const app = next({ dev: false });
