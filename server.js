@@ -1,13 +1,14 @@
 const { createServer } = require('http');
 const next = require('next');
 
+const PORT = process.env.PORT || 8080; // Use the correct port
 const app = next({ dev: false });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   createServer((req, res) => {
     handle(req, res);
-  }).listen(3000, () => {
-    console.log('Server running on port 3002');
+  }).listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
 });
